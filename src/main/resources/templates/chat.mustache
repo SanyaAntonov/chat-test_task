@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+<form action="/" method="get">
+    <div><input type="submit" value="Выйти из чата"/></div>
+</form>
+
+<form action="/chat" method="post">
+    <div><label> Введите сообщение : <input type="text" name="text"/></label></div>
+    <div><input type="submit" value="Отправить"/></div>
+</form>
+{{#messages}}
+<div>
+    <span>{{name}}</span>
+    <span>{{text}}</span>
+</div>
+{{/messages}}
+</body>
+</html>
