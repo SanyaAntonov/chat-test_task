@@ -44,16 +44,17 @@ public class MessageController {
             @Override
             public void run() {
                 while (true) {
-                    Iterable<Message> messages = repository.getAll();
-                    model.put("messages", messages);
                     try {
                         Thread.sleep(1000);
+                        Iterable<Message> messages = repository.getAll();
+                        model.put("messages", messages);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         });
+        thread.start();
     }
 
     @PostMapping("/chat")
