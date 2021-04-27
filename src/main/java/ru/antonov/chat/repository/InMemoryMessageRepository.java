@@ -1,5 +1,6 @@
 package ru.antonov.chat.repository;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import ru.antonov.chat.model.Message;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 
 @Repository
+@Scope("prototype")
 public class InMemoryMessageRepository {
 
     static List<Message> messageRepository = new ArrayList<>();

@@ -1,5 +1,6 @@
 package ru.antonov.chat.web;
 
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,24 @@ public class MessageController {
         Iterable<Message> messages = repository.getAll();
         model.put("messages", messages);
         return "chat";
+    }
+
+    @MessageMapping("/chat")
+    public void processMessage(Map<String, Object> model) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    Iterable<Message> messages = repository.getAll();
+                    model.put("messages", messages);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @PostMapping("/chat")
