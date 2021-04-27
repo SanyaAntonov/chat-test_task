@@ -4,8 +4,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import ru.antonov.chat.model.Message;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -19,6 +21,8 @@ public class InMemoryMessageRepository {
     }
 
     public List<Message> getAll() {
-        return messageRepository;
+        return messageRepository.stream()
+                .filter(message -> message.getLocalDate().equals(LocalDate.now()))
+                .collect(Collectors.toList());
     }
 }

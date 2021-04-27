@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.antonov.chat.model.Message;
 import ru.antonov.chat.repository.InMemoryMessageRepository;
 
+import java.time.LocalDate;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class MessageController {
@@ -60,11 +62,11 @@ public class MessageController {
     @PostMapping("/chat")
     public String add(@RequestParam String text,
                       Map<String, Object> model) {
-        Message message = new Message(nickname, text);
+        Message message = new Message(nickname, text, LocalDate.now());
         repository.createMessage(message);
 
         Iterable<Message> messages = repository.getAll();
         model.put("messages", messages);
-        return "chat";
+        return get(model);
     }
 }
