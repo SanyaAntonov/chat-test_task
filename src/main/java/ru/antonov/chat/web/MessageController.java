@@ -9,6 +9,7 @@ import ru.antonov.chat.model.Message;
 import ru.antonov.chat.repository.InMemoryMessageRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,7 @@ public class MessageController {
     @PostMapping("/chat")
     public String add(@RequestParam String text,
                       Map<String, Object> model) {
-        Message message = new Message(nickname, text, LocalDate.now());
+        Message message = new Message(nickname, text, LocalDateTime.now());
         repository.createMessage(message);
 
         Iterable<Message> messages = repository.getAll();

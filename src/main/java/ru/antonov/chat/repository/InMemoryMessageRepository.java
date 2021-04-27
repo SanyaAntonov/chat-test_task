@@ -22,7 +22,7 @@ public class InMemoryMessageRepository {
 
     public List<Message> getAll() {
         return messageRepository.stream()
-                .filter(message -> message.getLocalDate().equals(LocalDate.now()))
+                .filter(message -> message.getDate().getDayOfYear() == LocalDate.now().getDayOfYear())
                 .collect(Collectors.toList());
     }
 }

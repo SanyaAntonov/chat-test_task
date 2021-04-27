@@ -1,16 +1,16 @@
 package ru.antonov.chat.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Message {
     private String name;
     private String text;
-    private LocalDate localDate;
+    private LocalDateTime date;
 
-    public Message(String name, String text, LocalDate localDate) {
+    public Message(String name, String text, LocalDateTime date) {
         this.name = name;
         this.text = text;
-        this.localDate = localDate;
+        this.date = date;
     }
 
     public String getName() {
@@ -29,12 +29,12 @@ public class Message {
         this.text = text;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+    public void setLocalDate(LocalDateTime date) {
+        this.date = date;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Message {
         return "Message{" +
                 "name='" + name + '\'' +
                 ", text='" + text + '\'' +
-                ", localDate=" + localDate +
+                ", localDate=" + date +
                 '}';
     }
 }
